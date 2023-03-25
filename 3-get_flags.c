@@ -31,7 +31,7 @@ int get_flags(const char *format, int *i)
 				break;
 			}
 
-		if (FLAGS_CH[j] == 0)
+		if (FLAGS_CH[n] == 0)
 			break;
 	}
 

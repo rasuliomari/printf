@@ -85,7 +85,6 @@ int print_string(va_list types, char buffer[],
  * @size: Size specifier
  * Return: Number of chars printed
  */
-
 int print_percent(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
@@ -109,7 +108,6 @@ int print_percent(va_list types, char buffer[],
  * @size: Size specifier
  * Return: Number of chars printed
  */
-
 int print_int(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
@@ -118,17 +116,17 @@ int print_int(va_list types, char buffer[],
 	long int n = va_arg(types, long int);
 	unsigned long int num;
 
-	m = convert_size_number(m, size);
+	n = convert_size_number(n, size);
 
-	if (m == 0)
+	if (n == 0)
 		buffer[i--] = '0';
 
 	buffer[BUFF_SIZE - 1] = '\0';
-	num = (unsigned long int)m;
+	num = (unsigned long int)n;
 
-	if (m < 0)
+	if (n < 0)
 	{
-		num = (unsigned long int)((-1) * m);
+		num = (unsigned long int)((-1) * n);
 		is_negative = 1;
 	}
 
@@ -154,11 +152,10 @@ int print_int(va_list types, char buffer[],
  * @size: Size specifier
  * Return: Numbers of char printed.
  */
-
 int print_binary(va_list types, char buffer[],
 	int flags, int width, int precision, int size)
 {
-	unsigned int n, p, i, sum;
+	unsigned int n, m, i, sum;
 	unsigned int a[32];
 	int count;
 
@@ -169,12 +166,12 @@ int print_binary(va_list types, char buffer[],
 	UNUSED(size);
 
 	n = va_arg(types, unsigned int);
-	p = 2147483648; /* (2 ^ 31) */
-	a[0] = n / p;
+	m = 2147483648; /* (2 ^ 31) */
+	a[0] = n / m;
 	for (i = 1; i < 32; i++)
 	{
-		p /= 2;
-		a[i] = (n / p) % 2;
+		m /= 2;
+		a[i] = (n / m) % 2;
 	}
 	for (i = 0, sum = 0, count = 0; i < 32; i++)
 	{
